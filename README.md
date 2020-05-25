@@ -5,7 +5,8 @@ FossDash deploys a [Graphite](https://hub.docker.com/r/graphiteapp/docker-graphi
 This project is **work in progress**, and is made available under the MIT License.
 
 # Introduction
-In Fossology, a cron-scheduled exporter script publishes data regularly to the FossDash service, which collects, stores in the InfluxDB database. [FIXME: add a link to the correct Fossology branch]
+In Fossology, a cron-scheduled exporter script publishes data regularly to the FossDash service, which collects, stores in the InfluxDB database. 
+See this branch for the implementation of the exporter: [dev/fossdash-exporter](https://github.com/Orange-OpenSource/fossology/tree/dev/fossdash-exporter)
 
 A default dashboard is available in Grafana that lets you visualize the data straight away.
 
