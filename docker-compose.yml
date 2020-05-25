@@ -1,0 +1,96 @@
+#
+# FossDash Project
+#
+# Copyright 2020 Orange
+#
+# Permission is hereby granted, free of charge, to any person obtaining a copy
+# of this software and associated documentation files (the "Software"), to deal
+# in the Software without restriction, including without limitation the rights
+# to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+# copies of the Software, and to permit persons to whom the Software is furnished
+# to do so, subject to the following conditions:
+#
+# The above copyright notice and this permission notice shall be included in
+# all copies or substantial portions of the Software.
+#
+# THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS
+# OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+# FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+# AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
+# WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR
+# IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+
+# Software Name : FossDash
+# Version: 1.0
+# SPDX-FileCopyrightText: Copyright (c) 2020 Orange
+# SPDX-License-Identifier: MIT
+#
+# This software is distributed under the MIT license,
+# the text of which is available at https://opensource.org/licenses/MIT
+# or see the "license.txt" file for more details.
+
+# Author: Drozdz Bartlomiej, Nicolas Toussaint
+# Software description: FossDash collects and displays metrics produced by FOSSology.
+
+version: '2'
+
+services:
+  grafana:
+    image: grafana/grafana:6.7.2
+    depends_on:
+      - apache-reverse-proxy
+      - influxdb
+    ports:
+      - "8081:3000"
+    restart: unless-stopped
+    environment:
+      - "GF_SECURITY_ADMIN_PASSWORD=${GF_SECURITY_ADMIN_PASSWORD}"
+      - "GF_SERVER_ROOT_URL=${GF_SERVER_ROOT_URL}"
+      - "GF_SERVER_SERVE_FROM_SUB_PATH=${GF_SERVER_SERVE_FROM_SUB_PATH}"
+    volumes:
+      - "./grafana-etc/provisioning:/etc/grafana/provisioning/:ro"
+      - "./grafana-etc/grafana.ini:/etc/grafana/grafana.ini:ro"
+      - "grafana:/var/lib/grafana"
+    networks:
+      - fossology_default
+    user: ${USER_ID}
+
+  influxdb:
+    image: influxdb
+    depends_on:
+      - apache-reverse-proxy
+    ports:
+      - "8086:8086" #influxdb
+      - "8090:8090"
+      - "8099:8099"
+    restart: unless-stopped
+    environment:
+      - "INFLUXDB_DB=fossology_db"
+      - "INFLUXDB_ADMIN_ENABLED=false"
+      - "INFLUXDB_USER=${INFLUXDB_USER}"
+      - "INFLUXDB_USER_PASSWORD=${INFLUXDB_USER_PASSWORD}"
+      - "INFLUXDB_HOST=${INFLUXDB_HOST}"
+      - "INFLUXDB_URL_PREFIX=${INFLUXDB_URL_PREFIX}"
+    volumes:
+      - "influxdb:/var/lib/influxdb"
+    networks:
+        - fossology_default
+
+  apache-reverse-proxy:
+    # To set the ServerName : https://httpd.apache.org/docs/2.2/en/mod/core.html#servername
+    #hostname: "${APACHE_REVERSE_PROXY_HOSTNAME}"
+    image: httpd:latest
+    ports:
+      - ${SERVICE_FRONT_PORT}:8080
+    volumes:
+      - ./reverse-proxy_configuration/httpd.conf:/usr/local/apache2/conf/httpd.conf
+      - /etc/hosts:/etc/hosts
+    networks:
+      - fossology_default
+
+networks:
+  fossology_default:
+    external: true
+volumes:
+  influxdb:
+  grafana:

@@ -1,0 +1,6 @@
+*.swp
+*.pyc
+.vscode
+db*.json
+.pytest_cache
+.env
