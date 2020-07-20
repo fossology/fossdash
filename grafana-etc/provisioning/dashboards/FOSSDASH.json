@@ -1990,8 +1990,8 @@
     "list": []
   },
   "time": {
-    "from": "2020-06-25T09:30:01.850Z",
-    "to": "2020-06-25T11:00:01.030Z"
+    "from": "now-24h",
+    "to": "now"
   },
   "timepicker": {
     "refresh_intervals": [
