@@ -47,8 +47,8 @@ services:
       - "GF_SECURITY_ADMIN_PASSWORD=${GF_SECURITY_ADMIN_PASSWORD}"
       - "GF_SERVER_ROOT_URL=${GF_SERVER_ROOT_URL}"
       - "GF_SERVER_SERVE_FROM_SUB_PATH=${GF_SERVER_SERVE_FROM_SUB_PATH}"
+      - "GF_INSTALL_PLUGINS=grafana-piechart-panel,vonage-status-panel,mxswat-separator-panel,mtanda-histogram-panel,michaeldmoore-multistat-panel"
     volumes:
-      - "./grafana-etc/plugins:/var/lib/grafana/plugins"
       - "./grafana-etc/provisioning:/etc/grafana/provisioning/:ro"
       - "./grafana-etc/grafana.ini:/etc/grafana/grafana.ini:ro"
       - "grafana:/var/lib/grafana"
