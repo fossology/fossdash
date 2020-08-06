@@ -57,8 +57,8 @@ apt-get update && apt-get install grafana -y
 service grafana-server start
 
 # copy grafana config files
-cp ./grafana_local_setup/grafana.ini /etc/grafana/
-cp -r ./grafana_local_setup/provisioning /etc/grafana/
+cp ./grafana-etc/grafana.ini /etc/grafana/
+cp -r ./grafana-etc/provisioning /etc/grafana/
 
 #install grafan plugins
 grafana-cli plugins install grafana-piechart-panel
