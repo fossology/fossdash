@@ -1,11 +1,12 @@
 apiVersion: 1
 
 providers:
-- name: 'Fossology-InfluxDB-1'
-  orgId: 1
-  folder: ''
-  type: file
-  disableDeletion: false
-  editable: true
-  options:
-    path: /etc/grafana/provisioning/dashboards
+  - name: 'fossdash'
+    orgId: 1
+    folder: ''
+    type: file
+    disableDeletion: false
+    updateIntervalSeconds: 5
+    editable: true
+    options:
+      path: /etc/grafana/provisioning/dashboards

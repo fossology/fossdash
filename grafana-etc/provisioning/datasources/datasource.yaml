@@ -12,18 +12,15 @@ datasources:
   orgId: 1
   # <string> url
   url: http://influxdb:8086
-  # <string> Deprecated, use secureJsonData.password
-  password:
+ 
   # <string> database user, if used
-  user: user
+  user: admin
   # <string> database name, if used
   database: fossology_db
   # <bool> enable/disable basic auth
   basicAuth: true
   # <string> basic auth username
-  basicAuthUser: root
-  # <string> Deprecated, use secureJsonData.basicAuthPassword
-  # basicAuthPassword: root
+  basicAuthUser: admin
   # <bool> mark as default datasource. Max one per org
   isDefault: true
   # <map> fields that will be converted to json and stored in jsonData
@@ -33,4 +30,7 @@ datasources:
   editable: true
 
   secureJsonData:
-    basicAuthPassword: upserpass
+    # <string> basic auth password
+    basicAuthPassword: admin
+    # <string> database password, if used
+    password: admin
