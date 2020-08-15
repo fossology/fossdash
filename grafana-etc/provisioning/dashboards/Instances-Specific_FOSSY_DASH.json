@@ -16,7 +16,7 @@
   "editable": true,
   "gnetId": null,
   "graphTooltip": 0,
-  "iteration": 1595148888926,
+  "iteration": 1597491068298,
   "links": [],
   "panels": [
     {
@@ -239,7 +239,7 @@
               "type": "fill"
             }
           ],
-          "measurement": "version",
+          "measurement": "total_commit",
           "orderByTime": "ASC",
           "policy": "default",
           "query": "SELECT last(\"value\") FROM \"total_commit\";",
@@ -372,7 +372,7 @@
               "type": "fill"
             }
           ],
-          "measurement": "version",
+          "measurement": "latest_commit_id",
           "orderByTime": "ASC",
           "policy": "default",
           "query": "SELECT last(\"value\") FROM \"latest_commit_id\";",
@@ -505,7 +505,7 @@
               "type": "fill"
             }
           ],
-          "measurement": "version",
+          "measurement": "branch",
           "orderByTime": "ASC",
           "policy": "default",
           "query": "SELECT last(\"value\") FROM \"branch\";",
@@ -638,7 +638,7 @@
               "type": "fill"
             }
           ],
-          "measurement": "version",
+          "measurement": "commit_hash",
           "orderByTime": "ASC",
           "policy": "default",
           "query": "SELECT last(\"value\") FROM \"commit_hash\";",
@@ -771,11 +771,11 @@
               "type": "fill"
             }
           ],
-          "measurement": "version",
+          "measurement": "build_date",
           "orderByTime": "ASC",
           "policy": "default",
           "query": "SELECT last(\"value\") FROM \"version\" WHERE (\"instance\" =~ /^$instance$/) AND $timeFilter GROUP BY time($__interval) fill(null)",
-          "rawQuery": true,
+          "rawQuery": false,
           "refId": "A",
           "resultFormat": "table",
           "select": [
@@ -2124,11 +2124,6 @@
     "list": [
       {
         "allValue": null,
-        "current": {
-          "selected": true,
-          "text": "xyz_kansagara",
-          "value": "xyz_kansagara"
-        },
         "datasource": "InfluxDB",
         "definition": "SHOW TAG VALUES  WITH KEY = \"instance\" ",
         "hide": 0,
@@ -2170,5 +2165,5 @@
   "timezone": "",
   "title": "Instances-Specific_FOSSY_DASH",
   "uid": "xQpZBkyTn",
-  "version": 271
+  "version": 1
 }
