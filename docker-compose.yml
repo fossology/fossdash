@@ -30,6 +30,7 @@
 # or see the "license.txt" file for more details.
 
 # Author: Drozdz Bartlomiej, Nicolas Toussaint
+# Author: Darshan Kansagara <kansagara.darshan97@gmail.com>
 # Software description: FossDash collects and displays metrics produced by FOSSology.
 
 version: '2'
