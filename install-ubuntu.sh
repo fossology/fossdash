@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash -e
 #
 # Copyright (C) 2020 Orange
 # SPDX-License-Identifier: GPL-2.0
@@ -16,7 +16,7 @@
 # You should have received a copy of the GNU General Public License along
 # with this program; if not, write to the Free Software Foundation, Inc.,
 # 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
-
+ 
 
 #remove old version of grafana and influxdb
 apt-get remove --purge influxdb -y
@@ -26,6 +26,10 @@ rm -rf /etc/influxdb
 
 # InfluxDB Installation
 wget -qO- https://repos.influxdata.com/influxdb.key |  apt-key add -
+if [ ! -f /etc/lsb-release ]; then
+    echo "ERROR :: FILE /etc/lsb-release does not exist."
+    exit 1
+fi
 source /etc/lsb-release
 echo "deb https://repos.influxdata.com/${DISTRIB_ID,,} ${DISTRIB_CODENAME} stable" | tee /etc/apt/sources.list.d/influxdb.list
 

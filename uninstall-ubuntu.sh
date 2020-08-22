@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash -e
 #
 # Copyright (C) 2020 Orange
 # SPDX-License-Identifier: GPL-2.0
