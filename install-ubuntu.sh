@@ -1,8 +1,7 @@
-#!/bin/sh
+#!/bin/bash -e
 #
-# Copyright (C) 2020 Orange
+# Copyright Darshan Kansagara (kansagara.darshan97@gmail.com)
 # SPDX-License-Identifier: GPL-2.0
-# Author: Darshan Kansagara <kansagara.darshan97@gmail.com>
 #
 # This program is free software; you can redistribute it and/or
 # modify it under the terms of the GNU General Public License
@@ -26,6 +25,10 @@ rm -rf /etc/influxdb
 
 # InfluxDB Installation
 wget -qO- https://repos.influxdata.com/influxdb.key |  apt-key add -
+if [ ! -f /etc/lsb-release ]; then
+    echo "ERROR :: FILE /etc/lsb-release does not exist."
+    exit 1
+fi
 source /etc/lsb-release
 echo "deb https://repos.influxdata.com/${DISTRIB_ID,,} ${DISTRIB_CODENAME} stable" | tee /etc/apt/sources.list.d/influxdb.list
 
