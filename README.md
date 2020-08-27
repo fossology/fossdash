@@ -114,6 +114,9 @@ database=${FOSSDASH_DB_NAME:-fossology_db}
 # ...
 ```
 
+# futurer Scope
+* We Can include error, fatal and warning count of fossology in a Dashboard.
+
 # Caveats and known bugs
 
 - The Fossology export does not work if no upload has ever been performed.
